@@ -57,8 +57,15 @@ sub initPlugin {
       || "Buglist for user ";
 
     # Get plugin debug flag
-    $debug = &Foswiki::Func::getPreferencesFlag("BUGZILLAPLUGIN_DEBUG");
-    $debug = 1;
+    $debug = &Foswiki::Func::getPreferencesFlag("BUGZILLALINKPLUGIN_DEBUG");
+
+    # Register the tag handlers:
+    Foswiki::Func::registerTagHandler( 'BUG', \&_BugzillaShowBug );
+    Foswiki::Func::registerTagHandler( 'BUGLISTMS',
+        \&_BugzillaShowMilestoneBugList );
+    Foswiki::Func::registerTagHandler( 'BUGLISTKEY',
+        \&_BugzillaShowKeywordsBugList );
+    Foswiki::Func::registerTagHandler( 'MYBUGS', \&_BugzillaShowMyBugList );
 
     # Plugin correctly initialized
     &Foswiki::Func::writeDebug(
@@ -67,32 +74,17 @@ sub initPlugin {
     return 1;
 }
 
-# =========================
-sub commonTagsHandler {
-### my ( $text, $topic, $web ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
+sub _BugzillaShowBug {
 
-    &Foswiki::Func::writeDebug(
-        "- BugzillaLinkePlugin::commonTagsHandler( $_[2].$_[1] )")
-      if $debug;
-
-    # This is the place to define customized tags and variables
-    # Called by sub handleCommonTags, after %INCLUDE:"..."%
-    $_[0] =~ s/%BUG\{([0-9]+)\}%/&BugzillaShowBug($1)/geo;
-    $_[0] =~ s/%BUGLISTMS\{(.+)\}%/&BugzillaShowMilestoneBugList($1)/geo;
-    $_[0] =~ s/%BUGLISTKEY\{(.+)\}%/&BugzillaShowKeywordsBugList($1)/geo;
-    $_[0] =~ s/%MYBUGS\{(.+)\}%/&BugzillaShowMyBugList($1)/geo;
-}
-
-sub BugzillaShowBug {
-    my ($bugID) = @_;
+    my $bugID = $_[1]->{_DEFAULT};
     ## display a bug img and the bugzilla url
     $bugID =~ s/\s*(\S*)\s*/$1/;
     return
       "<img src='$bugImgUrl' alt='bug' /> [[$bugUrl$bugID][$bugText$bugID]]";
 }
 
-sub BugzillaShowMilestoneBugList {
-    my ($mID) = @_;
+sub _BugzillaShowMilestoneBugList {
+    my $mID = $_[1]->{_DEFAULT};
     ## display a bug img and a bugzilla milesteone bug list
     $mID =~ s/\s*(\S*)\s*/$1/;
     return
@@ -102,8 +94,8 @@ sub BugzillaShowMilestoneBugList {
       . "b&target_milestone=$mID][$milestoneBugListText $mID]]";
 }
 
-sub BugzillaShowKeywordsBugList {
-    my ($keyWords) = @_;
+sub _BugzillaShowKeywordsBugList {
+    my $keyWords = $_[1]->{_DEFAULT};
 
     # Determine if AND-type or OR-type search
     my $type = "allwords";
@@ -117,8 +109,9 @@ sub BugzillaShowKeywordsBugList {
       . "keywords_type=$type&keywords=$keyWordsUse][$keywordsBugListText \"$keyWords\"]]";
 }
 
-sub BugzillaShowMyBugList {
-    my ($mID) = @_;
+sub _BugzillaShowMyBugList {
+    my $mID = $_[1]->{_DEFAULT};
+
     ## display a bug img and a bugzilla milesteone bug list
     return "<img src='$bugImgUrl' alt='bug' /> [[$bugListUrl"
       . "bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=$mID&emailtype1=exact&emailassigned_to1=1&emailreporter1=1][$myBugListText $mID]]";

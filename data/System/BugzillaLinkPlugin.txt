@@ -1,18 +1,20 @@
-%META:TOPICINFO{author="joant" date="1128374233" format="1.0" version="1.3"}%
+%META:TOPICINFO{author="ProjectContributor" date="1488221926" format="1.1" version="1"}%
 ---+ <nop>%TOPIC%
 
-This plugin provides shorthand for linking to [[http://www.bugzilla.org/][Bugzilla]] bugs without specifying a URL in longhand.  It is most useful if you are using a local copy of Bugzilla for issue/ticket/bug tracking, and want to reference it from your topic.
+This plugin provides shorthand for linking to [[http://www.bugzilla.org/][Bugzilla]] bugs without specifying a URL in longhand.
+It is most useful if you are using a local copy of Bugzilla for issue/ticket/bug tracking, and want to reference it from your topic.
 
 %TOC%
 
 ---++Features
 
-	* Short hand references for:
-	* Individual bugs
-	* Lists of bugs assigned to a given milestone (or its beta)
-	* Lists of bugs matching one or more keywords
-	* Lists of the specified user's assigned bugs
-	* URLs and text prompts are fully configurable
+Short hand references for:
+   * Individual bugs
+   * Lists of bugs assigned to a given milestone (or its beta)
+   * Lists of bugs matching one or more keywords
+   * Lists of the specified user's assigned bugs
+
+The URLs and text prompts are fully configurable
 
 ---++ Syntax Rules
 
@@ -35,70 +37,50 @@ The following =%<nop>BUG*{...}%= short hand references are supported:
 
 ---++ <nop>%TOPIC% Settings
 
-Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>RENDERPLUGIN_SHORTDESCRIPTION%==
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>BUGZILLALINKPLUGIN_BUGURL%==
 
-	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-	* Set SHORTDESCRIPTION = Link to Bugzilla bugs using shorthand references
+Setting are *not* read from this topic.   To customize your settings, copy
+them to your  =[[%LOCALSITEPREFS%]]= topic, or in individual !WebPreferences or
+in-topic settings.
 
-	* #Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
-	* Set BUGZILLALINKPLUGIN_DEBUG = 0
+Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
+   * Set BUGZILLALINKPLUGIN_DEBUG = 0
 
-	* URL references to your Bugzilla installation and to the bug image
-	* Set BUGZILLALINKPLUGIN_BUGURL = http://bugzilla.mozilla.org/show_bug.cgi?id=
-	* Set BUGZILLALINKPLUGIN_BUGLISTURL = http://bugzilla.mozilla.org/buglist.cgi?
-	* Set BUGZILLALINKPLUGIN_BUGIMGURL = %PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%
+URL references to your Bugzilla installation and to the bug image
+   * Set BUGZILLALINKPLUGIN_BUGURL = http://bugzilla.mozilla.org/show_bug.cgi?id=
+   * Set BUGZILLALINKPLUGIN_BUGLISTURL = http://bugzilla.mozilla.org/buglist.cgi?
+   * Set BUGZILLALINKPLUGIN_BUGIMGURL = %PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%
 
-	* Text references for automatic substitution
-	* Set BUGZILLALINKPLUGIN_BUGTEXT = Bug #
-	* Set BUGZILLALINKPLUGIN_MILESTONEBUGLISTTEXT = Buglist for milestone
-	* Set BUGZILLALINKPLUGIN_KEYWORDSBUGLISTTEXT = Buglist for keyword(s)
-	* Set BUGZILLALINKPLUGIN_MYBUGLISTTEXT = Buglist for user
+Text references for automatic substitution
+   * Set BUGZILLALINKPLUGIN_BUGTEXT = Bug #
+   * Set BUGZILLALINKPLUGIN_MILESTONEBUGLISTTEXT = Buglist for milestone
+   * Set BUGZILLALINKPLUGIN_KEYWORDSBUGLISTTEXT = Buglist for keyword(s)
+   * Set BUGZILLALINKPLUGIN_MYBUGLISTTEXT = Buglist for user
 
----++ Limitations and Known Issues
-
-	* Many other sorts of linking is possible, but not yet implemented.
-	* This plugin could be refactored to work with many other sorts of bug tracking software, not limited to but including:
-	* RT
-	* Mantis
-	* DDTS (see Plugins.AutolinkDDTSPlugin)
-
----++ Plugin Installation Instructions
-
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
-
-	* Download the ZIP file from the Plugin web (see below)
-	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
-     | *File:* | *Description:* |
-     | ==data/System/%TOPIC%.txt== | Plugin topic |
-     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
-     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-     | ==pub/TWiki/%TOPIC%/*.gif== | Image files for themes |
-     | ==pub/TWiki/%TOPIC%/*.png== | Image files for themes |
-	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
-	* Test if the installation was successful:
-	* See if the above example works
+---++ Installation
+%$INSTALL_INSTRUCTIONS%
 
 ---++ Plugin Info
-
-|  Plugin Author: | TWiki:Main.FlorianGnaegi |
-|  Plugin Version: | 03 Oct 2005 (V1.300) |
+%TABLE{columnwidths="7em" tablewidth="100%"}%
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  03 Oct 2005 | Fixes for Dakar, added BUGLISTKEY function, refactored Settings (TWiki:Main.JoanTouzet) |
+|  27 Feb 2017 (1.400) | Ported to Foswiki, Modernize, change to use Registered macros, eliminate plugin topic settings. |
+|  03 Oct 2005 (1.300) | Fixes for Dakar, added BUGLISTKEY function, refactored Settings (TWiki:Main.JoanTouzet) |
 |  08 Jul 2003 | Added MYBUGS function (TWiki:Main.SteveKostecke), dealing with whitespace (TWiki:Main.AlanShields) |
 |  19 Aug 2002 | Added BUGLIST function, renamed to BugzillaLinkPlugin (TWiki:Main.AnthonPang ?) |
 |  15 Aug 2002 | Initial version |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | A working [[http://www.bugzilla.org][Bugzilla]] installation |
-|  Perl Version: | 5.005 |
-|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
-|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
-|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.InstalledPlugins][InstalledPlugins]]
 
--- TWiki:Main.JoanTouzet - 03 October 2005 <br>
+%META:FORM{name="PackageForm"}%
+%META:FIELD{name="Author" title="Author" value="TWiki:Main.FlorianGnaegi, Foswiki Contributors"}%
+%META:FIELD{name="Version" title="Version" value="%25$VERSION%25"}%
+%META:FIELD{name="Release" title="Release" value="%25$RELEASE%25"}%
+%META:FIELD{name="Description" title="Description" value="%25$SHORTDESCRIPTION%25"}%
+%META:FIELD{name="Copyright" value="&copy; 2002 TWiki:Main.FlorianGnaegi; %BR%&copy; 2008-2010, TWiki:TWiki.TWikiContributor %BR%&copy; 2017 Foswiki Contributors. %BR%All Rights Reserved"}%
+%META:FIELD{name="License" value="GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]])"}%
+%META:FIELD{name="Home" value="https://foswiki.org/Extensions/BugzillaLinkPlugin"}%
+%META:FIELD{name="Support" value="https://foswiki.org/Support/BugzillaLinkPlugin"}%
+%META:FIELD{name="Repository" title="Repository" value="https://github.com/foswiki/BugzillaLinkPlugin"}%
 
-%META:FILEATTACHMENT{name="bug.gif" attr="" comment="GIF Bug large" date="1029409171" path="/home/gnaegi/bug.gif" size="166" user="FlorianGnaegi" version="1.1"}%
-%META:FILEATTACHMENT{name="bug_small.gif" attr="" comment="GIF Bug small" date="1029416770" path="/home/gnaegi/bug_small.gif" size="885" user="FlorianGnaegi" version="1.1"}%
-%META:FILEATTACHMENT{name="bug_small.png" attr="" comment="PNG Bug transparent" date="1029409171" path="/home/gnaegi/bug.gif" size="166" user="FlorianGnaegi" version="1.0"}%
-%META:FILEATTACHMENT{name="bug_small_white.png" attr="" comment="PNG Bug, white background" date="1029409171" path="/home/gnaegi/bug.gif" size="166" user="FlorianGnaegi" version="1.0"}%
