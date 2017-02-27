@@ -1,0 +1,6 @@
+data/System/BugzillaLinkPlugin.txt 0664
+lib/Foswiki/Plugins/BugzillaLinkPlugin.pm 0664
+pub/System/BugzillaLinkPlugin/bug.gif 0664
+pub/System/BugzillaLinkPlugin/bug_small.gif 0664
+pub/System/BugzillaLinkPlugin/bug_small.png 0664
+pub/System/BugzillaLinkPlugin/bug_small_white.png 0664
