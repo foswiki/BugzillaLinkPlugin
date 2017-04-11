@@ -9,7 +9,7 @@ use strict;
 use warnings;
 
 our $VERSION           = '1.400';
-our $RELEASE           = '1 Mar 2017';
+our $RELEASE           = '10 Apr 2017';
 our $SHORTDESCRIPTION  = 'Render links to Bugzilla repositories.';
 our $NO_PREFS_IN_TOPIC = 1;
 
@@ -39,7 +39,7 @@ sub initPlugin {
       || "http://localhost/bugzilla/show_bug.cgi?id=";
     $bugImgUrl =
       &Foswiki::Func::getPreferencesValue("BUGZILLALINKPLUGIN_BUGIMGURL")
-      || '%PUBURLPATH{topic="%SYSTEMWEB%.BugzillaLinkPlugin" "bug.gif"}%';
+      || '%PUBURLPATH%/%SYSTEMWEB%/BugzillaLinkPlugin/bug.gif';
     $bugListUrl =
       &Foswiki::Func::getPreferencesValue("BUGZILLALINKPLUGIN_BUGLISTURL")
       || "http://localhost/bugzilla/buglist.cgi?";
@@ -121,7 +121,7 @@ sub _BugzillaShowMyBugList {
 __END__
 Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 
-Copyright (C) 2008-2013 Foswiki Contributors. Foswiki Contributors
+Copyright (C) 2008-2017 Foswiki Contributors. Foswiki Contributors
 are listed in the AUTHORS file in the root of this distribution.
 NOTE: Please extend that file, not this notice.
 

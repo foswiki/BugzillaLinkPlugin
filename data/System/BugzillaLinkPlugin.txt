@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1488221926" format="1.1" version="1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1491870602" format="1.1" version="1"}%
 ---+ <nop>%TOPIC%
 
 This plugin provides shorthand for linking to [[http://www.bugzilla.org/][Bugzilla]] bugs without specifying a URL in longhand.
@@ -28,11 +28,11 @@ The following =%<nop>BUG*{...}%= short hand references are supported:
 ---++ Examples
 
 |You type:|You get: (simulated)|You get: (if installed)|
-|%<nop>BUG{242971}%|<img src='%PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%' alt='bug' /> [[http://bugzilla.mozilla.org/show_bug.cgi?id=242971][Bug #242971]]|%BUG{242971}%|
-|%<nop>BUGLISTMS{Firefox1.0}%|<img src='%PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?target_milestone=Firefox1.0b&target_milestone=Firefox1.0][Buglist for milestone Firefox1.0]]|%BUGLISTMS{Firefox1.0}%|
-|%<nop>BUGLISTKEY{highrisk,64bit}%|<img src='%PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?keywords_type=anywords&keywords=highrisk+64bit][Buglist for keyword(s) "highrisk,64bit"]]|%BUGLISTKEY{highrisk,64bit}%|
-|%<nop>BUGLISTKEY{crash+fonts}%|<img src='%PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?keywords_type=allwords&keywords=crash+fonts][Buglist for keyword(s) "crash+fonts"]]|%BUGLISTKEY{crash+fonts}%|
-|%<nop>MYBUGS{shaver@mozilla.org}%|<img src='%PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=shaver@mozilla.org&emailtype1=exact&emailassigned_to1=1&emailreporter1=1][Buglist for shaver@mozilla.org]]|%MYBUGS{shaver@mozilla.org}%|
+|%<nop>BUG{242971}%|<img src='%PUBURLPATH%/%SYSTEMWEB%/BugzillaLinkPlugin/bug_small.png' alt='bug' /> [[http://bugzilla.mozilla.org/show_bug.cgi?id=242971][Bug #242971]]|%BUG{242971}%|
+|%<nop>BUGLISTMS{Firefox1.0}%|<img src='%PUBURLPATH%/%SYSTEMWEB%/BugzillaLinkPlugin/bug_small.png' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?target_milestone=Firefox1.0b&target_milestone=Firefox1.0][Buglist for milestone Firefox1.0]]|%BUGLISTMS{Firefox1.0}%|
+|%<nop>BUGLISTKEY{highrisk,64bit}%|<img src='%PUBURLPATH%/%SYSTEMWEB%/BugzillaLinkPlugin/bug_small.png' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?keywords_type=anywords&keywords=highrisk+64bit][Buglist for keyword(s) "highrisk,64bit"]]|%BUGLISTKEY{highrisk,64bit}%|
+|%<nop>BUGLISTKEY{crash+fonts}%|<img src='%PUBURLPATH%/%SYSTEMWEB%/BugzillaLinkPlugin/bug_small.png' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?keywords_type=allwords&keywords=crash+fonts][Buglist for keyword(s) "crash+fonts"]]|%BUGLISTKEY{crash+fonts}%|
+|%<nop>MYBUGS{shaver@mozilla.org}%|<img src='%PUBURLPATH%/%SYSTEMWEB%/BugzillaLinkPlugin/bug_small.png' alt='bug' /> [[http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=shaver@mozilla.org&emailtype1=exact&emailassigned_to1=1&emailreporter1=1][Buglist for shaver@mozilla.org]]|%MYBUGS{shaver@mozilla.org}%|
 
 
 ---++ <nop>%TOPIC% Settings
@@ -49,7 +49,7 @@ Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
 URL references to your Bugzilla installation and to the bug image
    * Set BUGZILLALINKPLUGIN_BUGURL = http://bugzilla.mozilla.org/show_bug.cgi?id=
    * Set BUGZILLALINKPLUGIN_BUGLISTURL = http://bugzilla.mozilla.org/buglist.cgi?
-   * Set BUGZILLALINKPLUGIN_BUGIMGURL = %PUBURLPATH{topic="System.BugzillaLinkPlugin" "bug_small.png"}%
+   * Set BUGZILLALINKPLUGIN_BUGIMGURL = %PUBURLPATH%/%SYSTEMWEB%/BugzillaLinkPlugin/bug_small.png
 
 Text references for automatic substitution
    * Set BUGZILLALINKPLUGIN_BUGTEXT = Bug #
@@ -63,7 +63,7 @@ Text references for automatic substitution
 ---++ Plugin Info
 %TABLE{columnwidths="7em" tablewidth="100%"}%
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  27 Feb 2017 (1.400) | Ported to Foswiki, Modernize, change to use Registered macros, eliminate plugin topic settings. |
+|  10 Apr 2017 (1.400) | Ported to Foswiki, Modernize, change to use Registered macros, eliminate plugin topic settings. |
 |  03 Oct 2005 (1.300) | Fixes for Dakar, added BUGLISTKEY function, refactored Settings (TWiki:Main.JoanTouzet) |
 |  08 Jul 2003 | Added MYBUGS function (TWiki:Main.SteveKostecke), dealing with whitespace (TWiki:Main.AlanShields) |
 |  19 Aug 2002 | Added BUGLIST function, renamed to BugzillaLinkPlugin (TWiki:Main.AnthonPang ?) |
